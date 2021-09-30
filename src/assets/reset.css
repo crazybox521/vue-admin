@@ -1,0 +1,152 @@
+@charset "utf-8";
+
+/*
+Reset CSS
+作用：清除和重置 基础css样式
+*/
+
+/* 一、重置*/
+
+html {
+  overflow-y: scroll;
+}
+/* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
+
+body,
+div,
+p,
+span,
+a,
+img,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+table,
+thead,
+tbody,
+tr,
+td,
+th {
+  padding: 0;
+  margin: 0;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  /* for ie */
+  /*font: 12px/1 Tahoma, Helvetica, Arial, "宋体", sans-serif;*/
+  font: 12px/1 "微软雅黑", Tahoma, Helvetica, Arial, sans-serif; /* 用 ascii 字符表示，使得在任何编码下都无问题 */
+  background: transparent;
+}
+button,
+input,
+select,
+textarea {
+  font-size: 100%; /* 使得表单元素在 ie 下能继承字体大小 */
+  border: none;
+  outline: none;
+}
+
+input::-ms-input-placeholder {
+  color: #c2c2c2;
+}
+input::-webkit-input-placeholder {
+  /* webkit 浏览器*/
+  color: #c2c2c2;
+}
+input::-moz-placeholder {
+  /* 火狐浏览器 */
+  color: #c2c2c2;
+}
+textarea::-ms-input-placeholder {
+  color: #c2c2c2;
+}
+textarea::-webkit-input-placeholder {
+  /* webkit 浏览器*/
+  color: #c2c2c2;
+}
+textarea::-moz-placeholder {
+  /* 火狐浏览器 */
+  color: #c2c2c2;
+}
+/*  设置input placeholder 样式 */
+
+select {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+select::-ms-expand {
+  display: none;
+}
+/*将默认的select选择框样式清除*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+em,
+i {
+  font-style: normal;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  color: #7f7f7f;
+}
+a:visited {
+  text-decoration: none;
+  outline: none;
+}
+a:hover {
+  text-decoration: none;
+  outline: none;
+}
+a:active {
+  text-decoration: none;
+  outline: none;
+}
+a:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+img {
+  vertical-align: top;
+  border: none;
+} /* 让链接里的 img 无边框  ie会出现*/
+
+label {
+  cursor: pointer;
+}
+/*  label标签鼠标移入后变为手型  */
+
+table {
+  border-collapse: collapse; /*合并边框*/
+  border-spacing: 0;
+}
+/* 重置表格元素 */
