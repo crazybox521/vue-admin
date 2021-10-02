@@ -6,3 +6,22 @@ body,
   margin: 0;
   padding: 0;
 }
+
+/* 清除浮动 */
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+
+.el-card {
+  margin-top: 10px;
+}
+.el-table{
+  margin-top: 10px;
+}
+
