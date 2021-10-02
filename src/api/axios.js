@@ -42,8 +42,26 @@ export const setUserState = (id, type) => {
     return axios.put(`/users/${id}/state/${type}`)
 }
 
-
+/* 添加用户 */
 export const addUser = (obj) => {
     return axios.post('/users', obj)
 
+}
+
+/* 根据ID查找用户 */
+export const queryUserById = (id) => {
+    return axios.get(`/users/${id}`)
+}
+
+/* 提交编辑信息 */
+export const editUserSubmit = (obj) => {
+    const { id, email, mobile } = obj
+    return axios.put(`/users/${id}`, {
+        mobile, email
+    })
+}
+
+/* 删除用户 */
+export const deleteUser =(id) => {
+    return axios.delete('/users/'+id)
 }
