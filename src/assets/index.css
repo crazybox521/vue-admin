@@ -5,6 +5,11 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  min-width: 1200px;
 }
 
 /* 清除浮动 */
@@ -21,7 +26,6 @@ body,
 .el-card {
   margin-top: 10px;
 }
-.el-table{
+.el-table {
   margin-top: 10px;
 }
-

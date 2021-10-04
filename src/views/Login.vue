@@ -108,6 +108,7 @@ export default {
     height: 400px;
     background-color: #fff;
     border-radius: 20px;
+    text-align: center;
 
     .logo-box {
       border-radius: 50%;

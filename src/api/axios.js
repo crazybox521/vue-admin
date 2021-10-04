@@ -62,6 +62,34 @@ export const editUserSubmit = (obj) => {
 }
 
 /* 删除用户 */
-export const deleteUser =(id) => {
-    return axios.delete('/users/'+id)
+export const deleteUser = (id) => {
+    return axios.delete('/users/' + id)
+}
+
+/* 获取权限列表 */
+export const getRightsList = (type) => {
+    return axios.get('/rights/' + type)
+}
+
+/* 获取角色列表 */
+export const getRoles = () => {
+    return axios.get('/roles')
+}
+
+/* 移除角色下某一权限 */
+export const deleteRoleRight = (roleId, rightId) => {
+    return axios.delete(`roles/${roleId}/rights/${rightId}`)
+}
+
+/* 分配权限提交 */
+export const setRoleRight = (id,roleId) => {
+    return axios.post(`/roles/${id}/rights`, {
+        roleId
+    })
+}
+
+export const setUserRole = (id, rid) => {
+    return axios.put(`/users/${id}/role`, {
+        rid
+    })
 }

@@ -4,7 +4,7 @@ import router from './router'
 import less from 'less'
 
 import './assets/index.css'
-import './assets/reset.css'
+/* import './assets/reset.css' */
 
 import './config/element'
 

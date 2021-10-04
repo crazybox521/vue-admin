@@ -173,6 +173,9 @@ export default {
   /* logo区域样式 */
   .header-logo {
     height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     /* logo图片的样式 */
     img {
       height: 100%;

@@ -31,7 +31,7 @@
         </el-col>
       </el-row>
       <!-- 数据表格 -->
-      <el-table size="mini" stripe border :data="userList" style="width: 100%">
+      <el-table stripe border :data="userList" style="width: 100%">
         <el-table-column type="index"></el-table-column>
         <el-table-column prop="username" label="姓名"></el-table-column>
         <el-table-column prop="mobile" label="电话"></el-table-column>
@@ -48,7 +48,7 @@
             </el-switch>
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="240px">
+        <el-table-column label="操作" width="280px">
           <template v-slot="scope">
             <el-tooltip
               class="item"
@@ -56,10 +56,7 @@
               content="编辑用户信息"
               placement="bottom"
             >
-              <el-button
-                type="primary"
-                size="mini"
-                @click="getEditUser(scope.row.id)"
+              <el-button type="primary" @click="getEditUser(scope.row.id)"
                 >编辑</el-button
               >
             </el-tooltip>
@@ -69,10 +66,7 @@
               content="删除用户"
               placement="bottom"
             >
-              <el-button
-                size="mini"
-                type="danger"
-                @click="handleDelete(scope.row.id)"
+              <el-button type="danger" @click="handleDelete(scope.row.id)"
                 >删除</el-button
               >
             </el-tooltip>
@@ -82,10 +76,7 @@
               content="为用户分配角色"
               placement="bottom"
             >
-              <el-button
-                size="mini"
-                type="warning"
-                @click="handleSetRole(scope.$index, scope.row)"
+              <el-button type="warning" @click="handleSetRole(scope.row)"
                 >分配角色</el-button
               >
             </el-tooltip>
@@ -189,6 +180,30 @@
         <el-button type="primary" @click="handleEdit">确 定</el-button>
       </span>
     </el-dialog>
+
+    <!-- 分配角色的对话框 -->
+    <el-dialog
+      title="分配角色"
+      :visible.sync="dialogVisibleSetRole"
+      width="40%"
+      @close="handleSetRoleCloseDialog()"
+    >
+      <p>当前操作用户：{{ userInfo.username }}</p>
+      <p>当前操作用户角色：{{ userInfo.role_name }}</p>
+      <el-select v-model="checkedRoleId" placeholder="请选择">
+        <el-option
+          v-for="item in rolesList"
+          :key="item.id"
+          :label="item.roleName"
+          :value="item.id"
+        >
+        </el-option>
+      </el-select>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisibleSetRole = false">取 消</el-button>
+        <el-button type="primary" @click="SetRole">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -199,7 +214,9 @@ import {
   addUser,
   queryUserById,
   editUserSubmit,
-  deleteUser
+  deleteUser,
+  getRoles,
+  setUserRole
 } from '../../api/axios.js'
 export default {
   name: 'Users',
@@ -214,21 +231,28 @@ export default {
       }
     }
     return {
+      /* 分页以及搜索的参数 */
       queryInfo: {
         query: '',
         pagenum: 1,
         pagesize: 10
       },
+      /* 用户列表 */
       userList: [],
+      /* 用户总数 */
       total: 0,
+      /* 搜索关键字 */
       keyword: '',
+      /* 添加用户信息对话框的状态 */
       dialogVisible: false,
+      /* 添加用户的信息 */
       addForm: {
         username: '',
         password: '',
         email: '',
         mobile: ''
       },
+      /* 添加用户的验证 */
       addFormRules: {
         username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
@@ -241,8 +265,11 @@ export default {
         ],
         mobile: [{ validator: validateMobile, trigger: ['blur', 'change'] }]
       },
+      /* 编辑用户对话框状态 */
       dialogVisibleEdit: false,
+      /* 编辑用户的信息 */
       editForm: {},
+      /* 编辑的验证 */
       editFormRules: {
         email: [
           {
@@ -252,7 +279,13 @@ export default {
           }
         ],
         mobile: [{ validator: validateMobile, trigger: ['blur', 'change'] }]
-      }
+      },
+      /* 分配角色 用户的信息 */
+      userInfo: {},
+      /* 分配角色对话框状态 */
+      dialogVisibleSetRole: false,
+      checkedRoleId: '',
+      rolesList: []
     }
   },
   watch: {
@@ -359,6 +392,34 @@ export default {
     /* 改变当前页的回调 */
     handleCurrentChange(val) {
       this.queryInfo.pagenum = val
+    },
+    async handleSetRole(userInfo) {
+      this.userInfo = userInfo
+      const { data: res } = await getRoles()
+      if (res.meta.status !== 200)
+        return this.$message.error('获取权限列表失败')
+
+      this.rolesList = res.data
+
+      this.dialogVisibleSetRole = true
+    },
+    /* 关闭分配角色对话框的回调 */
+    handleSetRoleCloseDialog() {
+      this.userInfo = {}
+      this.checkedRoleId = ''
+    },
+    /* 提交分配角色的回调 */
+    async SetRole() {
+      if (this.checkedRoleId == '') return this.$message.error('请选择权限')
+      const { data: res } = await setUserRole(
+        this.userInfo.id,
+        this.checkedRoleId
+      )
+      if (res.meta.status !== 200) return this.$message.error('设置失败')
+      this.$message.success('设置成功')
+
+      this.getUser()
+      this.dialogVisibleSetRole = false
     }
   }
 }
