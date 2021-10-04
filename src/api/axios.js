@@ -82,14 +82,28 @@ export const deleteRoleRight = (roleId, rightId) => {
 }
 
 /* 分配权限提交 */
-export const setRoleRight = (id,roleId) => {
+export const setRoleRight = (id, roleId) => {
     return axios.post(`/roles/${id}/rights`, {
         roleId
     })
 }
 
+/* 设置用户角色 */
 export const setUserRole = (id, rid) => {
     return axios.put(`/users/${id}/role`, {
         rid
     })
+}
+
+/* 获取商品分类列表 */
+export const getCataList = (obj) => {
+    return axios.get('/categories', {
+        params:obj
+    })
+}
+
+
+/* 添加商品分类 */
+export const addCate= (obj) => {
+    return axios.post('/categories',obj)
 }

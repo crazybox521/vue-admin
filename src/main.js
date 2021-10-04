@@ -8,6 +8,11 @@ import './assets/index.css'
 
 import './config/element'
 
+
+import ZkTable from 'vue-table-with-tree-grid'
+
+Vue.component(ZkTable.name, ZkTable)
+
 Vue.use(less)
 
 Vue.config.productionTip = false
