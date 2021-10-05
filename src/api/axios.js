@@ -98,12 +98,28 @@ export const setUserRole = (id, rid) => {
 /* 获取商品分类列表 */
 export const getCataList = (obj) => {
     return axios.get('/categories', {
-        params:obj
+        params: obj
     })
 }
 
-
 /* 添加商品分类 */
-export const addCate= (obj) => {
-    return axios.post('/categories',obj)
+export const addCate = (obj) => {
+    return axios.post('/categories', obj)
+}
+
+/* 获取动态参数/静态属性列表 */
+export const getParamsList = (id, sel) => {
+    return axios.get(`categories/${id}/attributes`, {
+        params: {
+            sel
+        }
+    })
+}
+
+/* 添加动态或静态参数 */
+export const addParam = (id, attr_name, attr_sel) => {
+    return axios.post(`categories/${id}/attributes`, {
+        attr_name, attr_sel
+    })
+
 }
