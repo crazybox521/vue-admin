@@ -1,6 +1,5 @@
 import axios from 'axios'
 import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
 
 /* 根路径 */
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1';
