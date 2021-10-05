@@ -1,4 +1,6 @@
 import axios from 'axios'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 /* 根路径 */
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1';
@@ -7,7 +9,13 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 
 /* 配置拦截器，在config中给header添加Authorization */
 axios.interceptors.request.use((config) => {
+    NProgress.start();
     config.headers.Authorization = sessionStorage.getItem('token') ? sessionStorage.getItem('token') : ''
+    return config
+})
+
+axios.interceptors.response.use((config) => {
+    NProgress.done();
     return config
 })
 
@@ -121,5 +129,11 @@ export const addParam = (id, attr_name, attr_sel) => {
     return axios.post(`categories/${id}/attributes`, {
         attr_name, attr_sel
     })
+}
+
+/* 获取统计数据 */
+
+export const getReportsdata = () => {
+    return axios.get('/reports/type/1')
 
 }

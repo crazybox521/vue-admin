@@ -9,8 +9,11 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "echarts": "^5.2.1",
     "element-ui": "^2.15.6",
     "less-loader": "^7.3.0",
+    "lodash": "^4.17.21",
+    "nprogress": "^0.2.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vue-table-with-tree-grid": "^0.2.4"
