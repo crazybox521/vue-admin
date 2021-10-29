@@ -6,9 +6,8 @@
         <img src="../assets/logo.png" alt="logo.png" />
       </div>
       <!-- 标题区域 -->
-      <div class="login-header">
-        <h1>后台管理系统</h1>
-      </div>
+      <h1>后台管理系统</h1>
+
       <!-- 表单区域 -->
       <el-form
         :model="ruleForm"
@@ -96,26 +95,26 @@ export default {
 
 <style lang="less" scoped>
 .login-container {
-  display: -webkit-flex;
   display: flex;
   height: 100%;
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
-  background-color: #264a6b;
+  background-image: url('../assets/bg-login.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   .login-box {
     border: 1px solid black;
     width: 600px;
     height: 400px;
-    background-color: #fff;
+    background-color: #fafafa;
     border-radius: 20px;
     text-align: center;
 
     .logo-box {
-      border-radius: 50%;
       margin: 0 auto;
       width: 200px;
       height: 200px;
-      margin-top: -60px;
+      margin-top: -80px;
       img {
         width: 100%;
         height: 100%;

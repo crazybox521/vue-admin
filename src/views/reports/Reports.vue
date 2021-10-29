@@ -51,7 +51,7 @@ export default {
       }
     }
   },
-  created() {},
+
   async mounted() {
     const { data: res } = await getReportsdata()
     if (res.meta.status !== 200)

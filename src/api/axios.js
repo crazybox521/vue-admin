@@ -22,12 +22,16 @@ axios.interceptors.response.use((config) => {
 /* 分别暴露各api请求 */
 
 export const doLogin = (obj) => {
-    let { username, password } = obj
+    let {
+        username,
+        password
+    } = obj
     return axios({
         method: 'post',
         url: '/login',
         data: {
-            username, password
+            username,
+            password
         }
     })
 }
@@ -62,9 +66,14 @@ export const queryUserById = (id) => {
 
 /* 提交编辑信息 */
 export const editUserSubmit = (obj) => {
-    const { id, email, mobile } = obj
+    const {
+        id,
+        email,
+        mobile
+    } = obj
     return axios.put(`/users/${id}`, {
-        mobile, email
+        mobile,
+        email
     })
 }
 
@@ -81,6 +90,29 @@ export const getRightsList = (type) => {
 /* 获取角色列表 */
 export const getRoles = () => {
     return axios.get('/roles')
+}
+
+/* 添加角色 */
+export const addRole = (obj) => {
+    return axios.post('/roles', obj)
+}
+
+/* 根据ID获取角色信息 */
+export const getRoleById = (id) => {
+    return axios.get(`roles/${id}`)
+}
+
+/* 提交编辑角色 */
+export const editRole = (roleId,roleName,roleDesc) => {
+    return axios.put(`roles/${roleId}`,{
+        roleName,
+        roleDesc
+    })
+}
+
+/* 删除角色 */
+export const deleteRole=(id) => {
+    return axios.delete('roles/'+id)
 }
 
 /* 移除角色下某一权限 */
@@ -126,7 +158,8 @@ export const getParamsList = (id, sel) => {
 /* 添加动态或静态参数 */
 export const addParam = (id, attr_name, attr_sel) => {
     return axios.post(`categories/${id}/attributes`, {
-        attr_name, attr_sel
+        attr_name,
+        attr_sel
     })
 }
 

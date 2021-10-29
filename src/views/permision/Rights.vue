@@ -6,7 +6,7 @@
       <el-breadcrumb-item>权限管理</el-breadcrumb-item>
       <el-breadcrumb-item>权限列表</el-breadcrumb-item>
     </el-breadcrumb>
-    <el-card>
+    <el-card class="rights-card">
       <el-table :data="rightsList" style="width: 100%" border stripe>
         <el-table-column prop="authName" label="权限名"></el-table-column>
         <el-table-column prop="path" label="权限路径"></el-table-column>
@@ -47,6 +47,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>
