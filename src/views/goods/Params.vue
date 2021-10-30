@@ -208,13 +208,15 @@ export default {
     }
   },
   methods: {
+
+    /* 获取商品列表 */
     async getCateList() {
       const { data: res } = await getCataList({})
       if (res.meta.status !== 200)
         return this.$message.error('获取商品列表失败')
       this.cataList = res.data
     },
-    async CateChange() {
+    CateChange() {
       this.getParamsList()
     },
     handleTabClick() {
@@ -249,6 +251,7 @@ export default {
           this.addForm.attr_name,
           this.activeName
         )
+        console.log('ressss',res);
         if (res.meta.status !== 201) return this.$message.error('添加失败')
         this.$message.success('添加成功')
         this.getParamsList()

@@ -21,6 +21,7 @@ axios.interceptors.response.use((config) => {
 
 /* 分别暴露各api请求 */
 
+/* 登录请求 */
 export const doLogin = (obj) => {
     let {
         username,
@@ -40,6 +41,8 @@ export const doLogin = (obj) => {
 export const getPermission = () => {
     return axios.get('/menus')
 }
+
+/* 用户页 */
 
 /* 用户列表 */
 export const getUsers = (obj) => {
@@ -82,10 +85,14 @@ export const deleteUser = (id) => {
     return axios.delete('/users/' + id)
 }
 
+/* 权限页 */
+
 /* 获取权限列表 */
 export const getRightsList = (type) => {
     return axios.get('/rights/' + type)
 }
+
+/* 角色页 */
 
 /* 获取角色列表 */
 export const getRoles = () => {
@@ -134,6 +141,8 @@ export const setUserRole = (id, rid) => {
     })
 }
 
+/* 商品分类页 */
+
 /* 获取商品分类列表 */
 export const getCataList = (obj) => {
     return axios.get('/categories', {
@@ -144,6 +153,23 @@ export const getCataList = (obj) => {
 /* 添加商品分类 */
 export const addCate = (obj) => {
     return axios.post('/categories', obj)
+}
+
+/* 删除商品分类 */
+export const deleteCate =(id) => {
+    return axios.delete('categories/'+id)
+}
+
+/* 根据ID查找对应分类信息 */
+export const queryCateById = (id) => {
+    return axios.get('categories/'+id)
+}
+
+/* 编辑分类提交更新 */
+export const editCate = (id,cat_name) => {
+    return axios.put('categories/'+id,{
+        cat_name
+    })
 }
 
 /* 获取动态参数/静态属性列表 */
@@ -164,8 +190,7 @@ export const addParam = (id, attr_name, attr_sel) => {
 }
 
 /* 获取统计数据 */
-
 export const getReportsdata = () => {
     return axios.get('/reports/type/1')
-
 }
+
