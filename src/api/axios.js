@@ -110,16 +110,16 @@ export const getRoleById = (id) => {
 }
 
 /* 提交编辑角色 */
-export const editRole = (roleId,roleName,roleDesc) => {
-    return axios.put(`roles/${roleId}`,{
+export const editRole = (roleId, roleName, roleDesc) => {
+    return axios.put(`roles/${roleId}`, {
         roleName,
         roleDesc
     })
 }
 
 /* 删除角色 */
-export const deleteRole=(id) => {
-    return axios.delete('roles/'+id)
+export const deleteRole = (id) => {
+    return axios.delete('roles/' + id)
 }
 
 /* 移除角色下某一权限 */
@@ -156,18 +156,18 @@ export const addCate = (obj) => {
 }
 
 /* 删除商品分类 */
-export const deleteCate =(id) => {
-    return axios.delete('categories/'+id)
+export const deleteCate = (id) => {
+    return axios.delete('categories/' + id)
 }
 
 /* 根据ID查找对应分类信息 */
 export const queryCateById = (id) => {
-    return axios.get('categories/'+id)
+    return axios.get('categories/' + id)
 }
 
 /* 编辑分类提交更新 */
-export const editCate = (id,cat_name) => {
-    return axios.put('categories/'+id,{
+export const editCate = (id, cat_name) => {
+    return axios.put('categories/' + id, {
         cat_name
     })
 }
@@ -189,8 +189,25 @@ export const addParam = (id, attr_name, attr_sel) => {
     })
 }
 
+/* 删除动态或静态参数 */
+export const delParam = (id, attrid) => {
+    return axios.delete(`categories/${id}/attributes/${attrid}`)
+}
+
+/* 根据ID查询参数 */
+export const queryParamById = (id, attrId) => {
+    return axios.get(`categories/${id}/attributes/${attrId}`)
+}
+
+/* 编辑参数提交 */
+export const editParam = (id, attrId, attr_name, attr_sel) => {
+    return axios.put(`categories/${id}/attributes/${attrId}`, {
+        attr_name,
+        attr_sel
+    })
+}
+
 /* 获取统计数据 */
 export const getReportsdata = () => {
     return axios.get('/reports/type/1')
 }
-
