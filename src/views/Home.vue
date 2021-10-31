@@ -58,8 +58,9 @@
         </el-menu>
       </el-aside>
       <!-- 主体区域右侧内容区域 -->
-      <el-main>
+      <el-main class="home-main">
         <router-view></router-view>
+        <el-backtop target=".home-main"></el-backtop>
       </el-main>
     </el-container>
   </el-container>
@@ -166,7 +167,8 @@ export default {
   background-color: #393d49;
   color: #333;
   text-align: center;
-  line-height: 60px;
+  line-height: 8vh;
+  height: 8vh!important;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -210,10 +212,12 @@ export default {
 }
 
 /* 内容区域 */
-.el-main {
-  background-color: #e9eef3;
+.home-main {
+  /* background-color: #e9eef3; */
   color: #333;
   width: 100%;
+  height: 92vh;
+  overflow-y: scroll;
 }
 
 /* 二级菜单样式 */

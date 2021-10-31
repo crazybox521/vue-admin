@@ -207,6 +207,25 @@ export const editParam = (id, attrId, attr_name, attr_sel) => {
     })
 }
 
+/* 商品管理 */
+
+/* 获取商品列表 */
+export const getGoodsList =(obj) => {
+    return axios.get('goods',{
+        params:obj
+    })
+}
+
+/* 删除商品*/
+export const deleteGood =(id) => {
+    return axios.delete('goods/'+id)
+}
+
+/* 添加商品 */
+export const addGood =(addGoodObj) => {
+    return axios.post('goods',addGoodObj)
+}
+ 
 /* 获取统计数据 */
 export const getReportsdata = () => {
     return axios.get('/reports/type/1')

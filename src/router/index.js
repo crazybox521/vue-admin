@@ -8,6 +8,7 @@ import Users from '../views/users/Users.vue'
 import Categories from '../views/goods/Categories.vue'
 import Params from '../views/goods/Params.vue'
 import Goods from '../views/goods/Goods.vue'
+import AddGood from '../views/goods/AddGood.vue'
 
 
 /* 权限相关路由 */
@@ -22,70 +23,62 @@ import Orders from '../views/orders/Orders.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-    {
+const routes = [{
         path: '/',
         redirect: '/login',
     },
     {
         path: '/login',
-        name: 'Login',
         component: Login,
     },
     {
         path: '/home',
-        name: 'Home',
         redirect: '/Welcome',
-        component: () => import(/* webpackChunkName: "group-home" */ '../views/Home.vue'),
+        component: () => import( /* webpackChunkName: "group-home" */ '../views/Home.vue'),
         children: [
             /* 欢迎页 */
             {
                 path: '/welcome',
-                name: 'Welcome',
                 component: Welcome,
             },
             /* 用户管理页 */
             {
                 path: '/users',
-                name: 'Users',
                 component: Users
             },
             /* 角色管理页 */
             {
                 path: '/roles',
-                name: 'Roles',
                 component: Roles
             },
             /*  */
             {
                 path: '/categories',
-                name: 'Categories',
                 component: Categories
             },
             /* 商品列表 */
             {
                 path: '/params',
-                name: 'Params',
                 component: Params
             },
             {
                 path: '/goods',
-                name: 'Goods',
                 component: Goods
             },
             {
+                path:'/addgood',
+                component:AddGood
+            },
+            {
                 path: '/rights',
-                name: 'Rights',
                 component: Rights
             },
             {
                 path: '/reports',
-                name: 'Reports',
                 component: Reports
             },
             {
                 path: '/orders',
-                name: 'Orders',
                 component: Orders
             }
         ]
@@ -94,16 +87,21 @@ const routes = [
 ]
 
 const router = new VueRouter({
-    mode:'hash',
+    mode: 'hash',
     routes
 })
 
 /* 路由前置守卫 */
 
 router.beforeEach((to, from, next) => {
-    if (to.path === '/login') return next()
+    if (to.path === '/login') {
+        document.title = '登录'
+        return next()
+    }
+
     const tokenStr = sessionStorage.getItem('token')
     if (!tokenStr) return next('/login')
+    document.title = '商城管理系统后台'
     next()
 })
 

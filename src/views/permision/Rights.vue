@@ -6,7 +6,7 @@
       <el-breadcrumb-item>权限管理</el-breadcrumb-item>
       <el-breadcrumb-item>权限列表</el-breadcrumb-item>
     </el-breadcrumb>
-    <el-card class="rights-card">
+    <el-card>
       <el-table :data="rightsList" style="width: 100%" border stripe>
         <el-table-column prop="authName" label="权限名"></el-table-column>
         <el-table-column prop="path" label="权限路径"></el-table-column>
@@ -21,6 +21,24 @@
         </el-table-column>
       </el-table>
     </el-card>
+
+    <el-backtop target="#app" :bottom="100">
+      <div
+        style="
+           {
+            height: 100%;
+            width: 100%;
+            background-color: #f2f5f6;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+            text-align: center;
+            line-height: 40px;
+            color: #1989fa;
+          }
+        "
+      >
+        UP
+      </div>
+    </el-backtop>
   </div>
 </template>
 
