@@ -1,37 +1,22 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from '../views/Login.vue'
-import Welcome from '../views/Welcome.vue'
-import Users from '../views/users/Users.vue'
-
-/* 商品相关的路由 */
-import Categories from '../views/goods/Categories.vue'
-import Params from '../views/goods/Params.vue'
-import Goods from '../views/goods/Goods.vue'
-import AddGood from '../views/goods/AddGood.vue'
-
-
-/* 权限相关路由 */
-import Rights from '../views/permision/Rights.vue'
-import Roles from '../views/permision/Roles.vue'
-
-/* 数据报表 */
-import Reports from '../views/reports/Reports.vue'
-
-/* 订单路由 */
-import Orders from '../views/orders/Orders.vue'
 
 Vue.use(VueRouter)
 
-const routes = [{
+const routes = [
+    /* 根路径 */
+    {
         path: '/',
         redirect: '/login',
     },
     {
+        /* 登录页 */
         path: '/login',
-        component: Login,
+        /* 路由懒加载 */
+        component: () => import( /* webpackChunkName: "group-home" */ '../views/Login.vue'),
     },
     {
+        /* 首页 */
         path: '/home',
         redirect: '/Welcome',
         component: () => import( /* webpackChunkName: "group-home" */ '../views/Home.vue'),
@@ -39,47 +24,52 @@ const routes = [{
             /* 欢迎页 */
             {
                 path: '/welcome',
-                component: Welcome,
+                component: () => import( /* webpackChunkName: "group-home" */ '../views/Welcome.vue'),
             },
             /* 用户管理页 */
             {
                 path: '/users',
-                component: Users
+                component: () => import( /* webpackChunkName: "group-users" */ '../views/users/Users.vue')
             },
             /* 角色管理页 */
             {
                 path: '/roles',
-                component: Roles
+                component: () => import( /* webpackChunkName: "group-permision" */ '../views/permision/Roles.vue')
             },
-            /*  */
-            {
-                path: '/categories',
-                component: Categories
-            },
-            /* 商品列表 */
-            {
-                path: '/params',
-                component: Params
-            },
-            {
-                path: '/goods',
-                component: Goods
-            },
-            {
-                path:'/addgood',
-                component:AddGood
-            },
+            /* 权限页 */
             {
                 path: '/rights',
-                component: Rights
+                component: () => import( /* webpackChunkName: "group-permision" */ '../views/permision/Rights.vue')
             },
+            /* 商品分类 */
+            {
+                path: '/categories',
+                component: () => import( /* webpackChunkName: "group-goods" */ '../views/goods/Categories.vue')
+            },
+            /* 商品参数 */
+            {
+                path: '/params',
+                component: () => import( /* webpackChunkName: "group-goods" */ '../views/goods/Params.vue')
+            },
+            /* 商品 */
+            {
+                path: '/goods',
+                component: () => import( /* webpackChunkName: "group-goods" */ '../views/goods/Goods.vue')
+            },
+            /* 添加商品 */
+            {
+                path: '/addgood',
+                component: () => import( /* webpackChunkName: "group-goods" */ '../views/goods/AddGood.vue')
+            },
+            /* 数据报表 */
             {
                 path: '/reports',
-                component: Reports
+                component: () => import( /* webpackChunkName: "group-reports" */ '../views/reports/Reports.vue')
             },
+            /* 订单 */
             {
                 path: '/orders',
-                component: Orders
+                component: () => import( /* webpackChunkName: "group-orders" */ '../views/orders/Orders.vue')
             }
         ]
     }

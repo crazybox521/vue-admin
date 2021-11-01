@@ -8,7 +8,9 @@ module.exports = {
     '@vue/cli-plugin-babel/preset'
   ],
   plugins: [
-    ...prodPlugins
+    ...prodPlugins,
+    //配置路由懒加载插件
+    "@babel/plugin-syntax-dynamic-import"
   ]
 
 }
