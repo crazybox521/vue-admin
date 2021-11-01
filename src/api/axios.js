@@ -226,6 +226,20 @@ export const addGood =(addGoodObj) => {
     return axios.post('goods',addGoodObj)
 }
  
+/* 订单管理 */
+
+/* 获取订单列表 */
+export const getOrders =(obj) => {
+    return axios.get('orders',{
+        params:obj
+    })
+}
+
+/* 获取物流信息 */
+export const getWuliuById =() => {
+    return axios.get('/kuaidi/1106975712662')
+}
+
 /* 获取统计数据 */
 export const getReportsdata = () => {
     return axios.get('/reports/type/1')
