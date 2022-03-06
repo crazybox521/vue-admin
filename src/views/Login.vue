@@ -63,6 +63,9 @@ export default {
       }
     }
   },
+  mounted(){
+    this.openNotify()
+  },
   methods: {
     login(formName) {
       this.$refs[formName].validate(async (valid) => {
@@ -88,6 +91,16 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields()
+    },
+    openNotify(){
+      this.$notify({
+          title: '提示',
+          dangerouslyUseHTMLString: true,
+          message: `<div >管理员</div>
+          <div>账号:<span style="color:red">admin</span></div>
+          <div>密码:<span style="color:red">123456</span></div>`,
+          duration: 0
+        });
     }
   }
 }

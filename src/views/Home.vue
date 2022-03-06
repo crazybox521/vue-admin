@@ -3,7 +3,7 @@
     <!-- 页面头部区域 -->
     <el-header>
       <!-- logo区域 -->
-      <div class="header-logo">
+      <div :style="{'cursor':'pointer'}" class="header-logo" @click="toHome">
         <img src="../assets/logo.png" alt="logo.png" /><span>后台管理系统</span>
       </div>
       <el-button type="danger" plain @click="logout">注销登录</el-button>
@@ -110,6 +110,11 @@ export default {
       sessionStorage.getItem('isCollapse') === 'true' ? true : false
   },
   methods: {
+    toHome(){
+      console.log(this.$route.path);
+      if(this.$route.path!=='/Welcome')
+      this.$router.push('/Welcome')
+    },
     /* 保存导航的激活状态 */
     saveActive(val) {
       this.activeIndex = val
