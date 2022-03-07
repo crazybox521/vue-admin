@@ -1,5 +1,6 @@
 # vue-admin
-
+### 预览地址
+[vue后台管理系统预览地址 ](http://47.102.159.133:8888/)
 ## Project setup
 ```
 npm install
