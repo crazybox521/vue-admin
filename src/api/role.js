@@ -23,7 +23,7 @@ export const deleteRole = (id) => http.delete('roles/' + id)
 export const deleteRoleRight = (roleId, rightId) => http.delete(`roles/${roleId}/rights/${rightId}`)
 
 /* 分配权限提交 */
-export const setRoleRight = (id, roleId) => http.post(`/roles/${id}/rights`, { roleId })
+export const setRoleRight = (id, rids) => http.post(`/roles/${id}/rights`, { rids })
 
 /* 设置用户角色 */
 export const setUserRole = (id, rid) => http.put(`/users/${id}/role`, { rid })
