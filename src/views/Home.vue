@@ -3,10 +3,14 @@
     <!-- 页面头部区域 -->
     <el-header>
       <!-- logo区域 -->
-      <div :style="{'cursor':'pointer'}" class="header-logo" @click="toHome">
-        <img src="../assets/logo.png" alt="logo.png" /><span>后台管理系统</span>
+      <div :style="{ cursor: 'pointer' }" class="header-logo" @click="toHome">
+        <span>依云商城后台管理</span>
       </div>
-      <el-button type="danger" plain @click="logout">注销登录</el-button>
+      <div class="btn-wrap">
+        <span style="margin: 10px">欢迎您 , {{ userName }}</span>
+        <el-button  @click="logout" type="warning">注销登录</el-button>
+        <el-button type="info" icon="el-icon-setting" @click="$router.push('/settings')"></el-button>
+      </div>
     </el-header>
     <!-- 页面主体区域 -->
     <el-container>
@@ -26,8 +30,8 @@
         <el-menu
           :collapse-transition="false"
           unique-opened
-          background-color="#545c64"
-          text-color="#fff"
+          background-color="#fff"
+          text-color="#000"
           active-text-color="#409eff"
           :collapse="isCollapse"
           :default-active="activeIndex"
@@ -67,7 +71,7 @@
 </template>
 
 <script>
-import { getPermission } from '../api/axios'
+import { getPermission } from '../api/user'
 export default {
   name: 'Home',
   data() {
@@ -85,13 +89,14 @@ export default {
       /* 是否折叠菜单 */
       isCollapse: true,
       /* 当前激活菜单 */
-      activeIndex: ''
+      activeIndex: '',
+      userName: ''
     }
   },
   computed: {
     /* 折叠按钮的文本 */
     textCollapse() {
-      return this.isCollapse ? '' : '折叠'
+      return this.isCollapse ? '' : '收起'
     },
     /* 右侧菜单的宽度，根据是否折叠控制 */
     asideWidth() {
@@ -105,15 +110,15 @@ export default {
     this.activeIndex = sessionStorage.getItem('index')
       ? sessionStorage.getItem('index')
       : ''
-    /* 获取session中的是否折叠选项，只要不是true都设为false */
+    /* 获取local中的是否折叠选项，只要不是true都设为false */
     this.isCollapse =
-      sessionStorage.getItem('isCollapse') === 'true' ? true : false
+      localStorage.getItem('isCollapse') === 'true' ? true : false
+    this.userName = sessionStorage.getItem('userName')
   },
   methods: {
-    toHome(){
-      console.log(this.$route.path);
-      if(this.$route.path!=='/Welcome')
-      this.$router.push('/Welcome')
+    toHome() {
+      console.log(this.$route.path)
+      if (this.$route.path !== '/Welcome') this.$router.push('/Welcome')
     },
     /* 保存导航的激活状态 */
     saveActive(val) {
@@ -123,7 +128,7 @@ export default {
     /* 处理折叠按钮点击事件 */
     handleCollapse() {
       this.isCollapse = !this.isCollapse
-      sessionStorage.setItem('isCollapse', this.isCollapse)
+      localStorage.setItem('isCollapse', this.isCollapse)
     },
     /* 获取列表数据 */
     getMunuList() {
@@ -169,42 +174,28 @@ export default {
 }
 /* 头部区域样式 */
 .el-header {
-  background-color: #393d49;
-  color: #333;
+  background-image: linear-gradient(#00bcd4, #2196f3);
+  color: #fff;
   text-align: center;
   line-height: 8vh;
-  height: 8vh!important;
+  height: 8vh !important;
   display: flex;
   justify-content: space-between;
   align-items: center;
   /* logo区域样式 */
   .header-logo {
     height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* logo图片的样式 */
-    img {
-      height: 100%;
-    }
     /* logo文本的样式 */
     span {
-      color: #e9eef3;
       font-size: 28px;
       font-weight: bold;
     }
-  }
-  /* 头部区域注销登录按钮 */
-  .el-button {
-    height: 50px;
   }
 }
 
 /* 左侧导航区域 */
 .el-aside {
-  background-color: #545c64;
-  text-align: center;
-  line-height: 200px;
+  background-color: #fff;
   /* 折叠按钮区域 */
   .btn-collapse-wrapper {
     height: 40px;
@@ -222,12 +213,6 @@ export default {
   color: #333;
   width: 100%;
   height: 92vh;
-  overflow-y: scroll;
-}
-
-/* 二级菜单样式 */
-.aside-menu-item {
-  padding: 0;
-  min-width: 199px;
+  overflow-y: auto;
 }
 </style>

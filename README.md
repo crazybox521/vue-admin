@@ -12,9 +12,10 @@ npm run serve
 
 npm run start
 ```
-### 管理员密码
+### 管理员账号
 admin
 123456
+
 
 ### Compiles and minifies for production
 ```

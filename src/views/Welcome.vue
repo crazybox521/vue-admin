@@ -1,6 +1,15 @@
 <template>
   <div class="welcome">
-    <h1>欢迎进入商城管理系统欢迎页</h1>
+    <div class="welcome-title">欢迎您,{{ userName }}</div>
+    <div v-if="showMap">为您带来今天的疫情信息:</div>
+    <div class="cov-wrap" v-if="showMap">
+      <iframe
+        src="http://47.102.159.133:8090/epidemic-information-map/"
+        frameborder="0"
+      ></iframe>
+    </div>
+
+    <!-- <h1>欢迎进入商城管理系统欢迎页</h1>
     <h1>系统主要有以下几个方面的功能或特点：</h1>
     <section>
       <ol>
@@ -20,15 +29,38 @@
       <a href="https://gitee.com/crazybox521/vue-admin" target="_blank"
         >vue后台管理系统</a
       >
-    </section>
+    </section> -->
   </div>
 </template>
 
 <script>
+
 export default {
-  name: 'Welcome'
+  name: 'Welcome',
+  data() {
+    return {
+      userName: 'NULL',
+      showMap: true
+    }
+  },
+  created() {
+    this.showMap = localStorage.getItem('showMap') === 'false' ? false : true
+    this.userName =sessionStorage.getItem('userName')
+  }
 }
 </script>
 
-<style>
+<style lang="less" scoped>
+.welcome-title{
+  font-weight: bold;
+  font-size: 18px;
+}
+.cov-wrap {
+  width: 100%;
+  height: 500px;
+}
+iframe {
+  width: 100%;
+  height: 100%;
+}
 </style>

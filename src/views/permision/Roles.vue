@@ -190,7 +190,7 @@ import {
   getRoleById,
   editRole,
   deleteRole
-} from '../../api/axios.js'
+} from '../../api/role'
 export default {
   name: 'Roles',
   data() {
@@ -340,11 +340,7 @@ export default {
         if (!valid) {
           return
         } else {
-          const { data: res } = await editRole(
-            this.editRoleForm.roleId,
-            this.editRoleForm.roleName,
-            this.editRoleForm.roleDesc
-          )
+          const { data: res } = await editRole(this.editRoleForm)
           if (res.meta.status !== 200) return this.$message.error('修改失败')
           this.$message.success('修改成功')
           this.getRolesList()

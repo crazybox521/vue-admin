@@ -37,21 +37,21 @@
         </template>
         <!-- 列表级别列 -->
         <template v-slot:order="scope">
-          <el-tag size="mini" v-if="scope.row.cat_level === 0">一级</el-tag>
+          <el-tag  v-if="scope.row.cat_level === 0">一级</el-tag>
           <el-tag
             type="success"
-            size="mini"
+            
             v-else-if="scope.row.cat_level === 1"
             >二级</el-tag
           >
-          <el-tag type="warning" size="mini" v-else>三级</el-tag>
+          <el-tag type="warning"  v-else>三级</el-tag>
         </template>
         <!-- 操作列 -->
         <template v-slot:option="scope">
-          <el-button type="primary" size="mini" @click="handleEdit(scope.row)"
+          <el-button type="primary"  @click="handleEdit(scope.row)"
             >编辑</el-button
           >
-          <el-button type="danger" size="mini" @click="handleDelete(scope.row)"
+          <el-button type="danger"  @click="handleDelete(scope.row)"
             >删除</el-button
           >
         </template>
@@ -134,7 +134,7 @@ import {
   deleteCate,
   queryCateById,
   editCate
-} from '../../api/axios.js'
+} from '../../api/goods'
 export default {
   name: 'Categories',
   data() {

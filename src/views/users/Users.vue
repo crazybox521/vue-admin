@@ -33,7 +33,7 @@
       <!-- 数据表格 -->
       <el-table stripe border :data="userList" style="width: 100%">
         <el-table-column type="index"></el-table-column>
-        <el-table-column prop="username" label="姓名"></el-table-column>
+        <el-table-column prop="username" label="用户名"></el-table-column>
         <el-table-column prop="mobile" label="电话"></el-table-column>
         <el-table-column prop="email" label="邮箱"></el-table-column>
         <el-table-column prop="role_name" label="角色"></el-table-column>
@@ -214,10 +214,9 @@ import {
   addUser,
   queryUserById,
   editUserSubmit,
-  deleteUser,
-  getRoles,
-  setUserRole
-} from '../../api/axios.js'
+  deleteUser
+} from '../../api/user'
+import { getRoles, setUserRole } from '../../api/role'
 export default {
   name: 'Users',
   data() {
@@ -372,10 +371,7 @@ export default {
     async stateChange(info) {
       const { data: res } = await setUserState(info.id, info.mg_state)
       if (res.meta.status !== 200) return this.$message.error('修改状态失败')
-      this.$message({
-        type: 'success',
-        message: '修改状态成功'
-      })
+      this.$message.success('修改状态成功')
     },
     /* 获取用户列表的信息 */
     async getUser() {

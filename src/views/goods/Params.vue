@@ -33,7 +33,7 @@
             type="primary"
             :disabled="isBtnDisabled"
             @click="openAddView"
-            size="mini"
+            
             >添加动态参数</el-button
           >
           <!-- 动态参数的数据表格 -->
@@ -77,14 +77,14 @@
                   icon="el-icon-edit"
                   type="primary"
                   @click="paramsEdit(scope.row)"
-                  size="mini"
+                  
                   >编辑</el-button
                 >
                 <el-button
                   icon="el-icon-delete"
                   type="danger"
                   @click="paramsDel(scope.row)"
-                  size="mini"
+                  
                   >删除</el-button
                 >
               </template>
@@ -96,7 +96,7 @@
             type="primary"
             :disabled="isBtnDisabled"
             @click="openAddView"
-            size="mini"
+            
             >添加静态属性</el-button
           >
           <el-table :data="onlyTabData" border stripe style="width: 100%">
@@ -136,14 +136,14 @@
                   icon="el-icon-edit"
                   type="primary"
                   @click="paramsEdit(scope.row)"
-                  size="mini"
+                  
                   >编辑</el-button
                 >
                 <el-button
                   icon="el-icon-delete"
                   type="danger"
                   @click="paramsDel(scope.row)"
-                  size="mini"
+                  
                   >删除</el-button
                 >
               </template>
@@ -205,7 +205,7 @@ import {
   delParam,
   queryParamById,
   editParam
-} from '../../api/axios.js'
+} from '../../api/goods'
 export default {
   name: 'Params',
   data() {

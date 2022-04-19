@@ -134,7 +134,7 @@
 
 <script>
 /* 引入api请求 */
-import { getCataList, getParamsList,addGood } from '../../api/axios'
+import { getCataList, getParamsList,addGood } from '../../api/goods'
 /* 引入lodash */
 import _ from 'lodash'
 export default {

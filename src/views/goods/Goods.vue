@@ -22,9 +22,7 @@
         </el-col>
         <el-col :span="3">
           <!-- 添加用户按钮 -->
-          <el-button type="primary" @click="goAddPage"
-            >添加商品</el-button
-          >
+          <el-button type="primary" @click="goAddPage">添加商品</el-button>
         </el-col>
       </el-row>
       <!-- 数据表格 -->
@@ -85,12 +83,11 @@
       >
       </el-pagination>
     </el-card>
-    
   </div>
 </template>
 
 <script>
-import { getGoodsList, deleteGood } from '../../api/axios'
+import { getGoodsList, deleteGood } from '../../api/goods'
 export default {
   name: 'Goods',
   data() {
@@ -103,9 +100,8 @@ export default {
       },
       total: 0,
       /* 商品数据 */
-      goodsList: [],
+      goodsList: []
       /* 添加相关数据和状态 */
-      
     }
   },
   created() {
@@ -157,7 +153,8 @@ export default {
     },
     openEditView(id) {
       console.log(id)
-    },goAddPage(){
+    },
+    goAddPage() {
       this.$router.push('/addgood')
     }
   }

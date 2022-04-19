@@ -7,7 +7,7 @@
       <el-breadcrumb-item>权限列表</el-breadcrumb-item>
     </el-breadcrumb>
     <el-card>
-      <el-table :data="rightsList" style="width: 100%" border stripe>
+      <el-table :data="rightsList" style="width: 100%" border stripe >
         <el-table-column prop="authName" label="权限名"></el-table-column>
         <el-table-column prop="path" label="权限路径"></el-table-column>
         <el-table-column prop="level" label="权限等级">
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { getRightsList } from '../../api/axios.js'
+import { getRightsList } from '../../api/role'
 export default {
   name: 'Rights',
   data() {

@@ -36,3 +36,13 @@ body{
 .ql-editor{
   min-height: 300px;
 }
+.icon {
+  width: 1em; height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+#nprogress .bar{
+  background-color: aliceblue;
+}

@@ -5,7 +5,7 @@ import App from './App.vue'
 import router from './router'
 
 /* 全局样式 */
-import './assets/index.css'
+import './assets/css/index.css'
 /* import './assets/reset.css' */
 
 /* element相关的配置 */

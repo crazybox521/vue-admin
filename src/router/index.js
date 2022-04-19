@@ -70,6 +70,10 @@ const routes = [
             {
                 path: '/orders',
                 component: () => import( /* webpackChunkName: "group-orders" */ '../views/orders/Orders.vue')
+            },
+            {
+                path:'/settings',
+                component:()=>import( /* webpackChunkName: "group-orders" */ '../views/setting/SystemSetting.vue')
             }
         ]
     }
@@ -91,7 +95,7 @@ router.beforeEach((to, from, next) => {
 
     const tokenStr = sessionStorage.getItem('token')
     if (!tokenStr) return next('/login')
-    document.title = '商城管理系统后台'
+    document.title = '依云商城管理系统'
     next()
 })
 

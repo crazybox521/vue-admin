@@ -95,7 +95,7 @@
       width="50%"
       @close="handleCloseDialog('addressForm')"
     >
-      <!-- 弹出框里嵌入的表单，添加用户 -->
+      <!-- 弹出框里嵌入的表单，修改地址 -->
       <el-form
         label-width="80px"
         ref="addressForm"
@@ -145,7 +145,7 @@
 /* 引入省市数据 */
 import cityOptions from '../../utils/city_data2017_element'
 /* 模拟的物流信息 */
-import wuliu from '../../utils/wuliu'
+import wuliu from '../../assets/json/wuliu.json'
 import { getOrders } from '../../api/axios'
 export default {
   name: 'Orders',
@@ -178,11 +178,12 @@ export default {
       /* 物流信息对话框 */
       dialogVisiableProgress: false,
       /* 物流进度条 */
-      progressData: wuliu.data
+      progressData: wuliu
     }
   },
   created() {
     this.getOrdersList()
+    console.log(wuliu)
   },
   methods: {
     /* 获取订单数据 */
